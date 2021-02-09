@@ -70,7 +70,7 @@ const vcard = 'BEGIN:VCARD\n'
             + 'VERSION:3.0\n'
             + 'FN:Farhan\n'
             + 'ORG:Owner FXC7;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=628311800241:+62 831-1800-241\n'
+            + 'TEL;type=CELL;type=VOICE;waid=6289670394574:+62 896-7039-4574\n'
             + 'END:VCARD'
 
 prefix = "!"
@@ -81,7 +81,7 @@ botinfo = "UNTUK INVITE BOT SILAHKAN DONASI DULU YAA:)"
 limitt = 10
 memberLimit = 2
 ban = []
-premium = ["628311800241@s.whatsapp.net"]
+premium = ["6289670394574@s.whatsapp.net"]
 
 function kyun(seconds){
   function pad(s){
