@@ -6,6 +6,7 @@
 > 2 HandPhone
 ```
 
+MUNGK
 ## Install
 Follow The Steps Below!
 
@@ -15,7 +16,7 @@ Follow The Steps Below!
 > pkg update -y
 > pkg upgrade -y
 > pkg install git -y
-> git clone https://github.com/Fxc7/termux-bot-wa
+> git clone https://github.com/lastsymphony/testv2
 > cd termux-bot-wa
 > npm cache clear
 > bash install.sh
