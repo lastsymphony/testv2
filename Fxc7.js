@@ -68,15 +68,15 @@ const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRando
 
 const vcard = 'BEGIN:VCARD\n'
             + 'VERSION:3.0\n'
-            + 'FN:Farhan\n'
-            + 'ORG:Owner FXC7;\n'
+            + 'FN:SYMPHONY\n'
+            + 'ORG:Owner SYMPHONY;\n'
             + 'TEL;type=CELL;type=VOICE;waid=6289670394574:+62 896-7039-4574\n'
             + 'END:VCARD'
 
 prefix = "!"
 name = "~ SYMPHONY BOT"
 rdaftar = "TERIMA KASIH TELAH DAFTAR MENJADI TEMEN SYMPHONYBOT😁"
-rmenu = "HAI TEMEN IRIENEBOT👋 JANGAN LUPA DONASI YAA:)"
+rmenu = "HAI TEMEN SYMPHONYBOT👋 JANGAN LUPA DONASI YAA:)"
 botinfo = "UNTUK INVITE BOT SILAHKAN DONASI DULU YAA:)"
 limitt = 10
 memberLimit = 2
@@ -334,7 +334,7 @@ async function starts() {
 				break 
 		case 'daftar':
 					client.updatePresence(from, Presence.composing)
-					if (isUser) return reply('kamu sudah Menjadi Temen IRIENEBOT:D')
+					if (isUser) return reply('kamu sudah Menjadi Temen SYMPHONYBOT:D')
 					if (isBanned) return reply(mess.only.benned)
 					user.push(sender)
 					fs.writeFileSync('./database/json/user.json', JSON.stringify(user))
@@ -440,7 +440,7 @@ async function starts() {
 					teks = `╭─「 *TOTAL USER PREMIUM ${name}* 」\n`
 					no = 0
 					for (let prem of premium) {
-						no += 1
+						no += 100
 						teks += `[${no.toString()}] @${prem.split('@')[0]}\n`
 					}
 					teks += `│+ Total User Premium : ${premium.length}\n╰──────⎿ *${name}* ⏋────`
@@ -456,7 +456,7 @@ async function starts() {
 					break
 				case 'addprem':
 					client.updatePresence(from, Presence.composing)
-					if (args.length < 1) return
+					if (args.length < 100) return
 					if (!isOwner) return reply(mess.only.ownerB)
 					addpremium = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					premium = addpremium
@@ -465,7 +465,7 @@ async function starts() {
 				case 'removeprem':
 					if (!isOwner) return reply(mess.only.ownerB)
 					rprem = body.slice(13)
-					premium.splice(`${rprem}@s.whatsapp.net`, 1)
+					premium.splice(`${rprem}@s.whatsapp.net`, 100)
 					reply(`Berhasil Remove wa.me/${rprem} Dari User Premium`)
 					break
 				case 'unban':
@@ -685,8 +685,9 @@ async function starts() {
 				    await limitAdd(sender) 	
 				    break 
 				case 'owner':
-                 client.sendMessage(from, {displayname: "jeff", vcard: vcard}, MessageType.contact, { quoted: mek})
+                 client.sendMessage(from, {displayname: "Adityajatayu", vcard: vcard}, MessageType.contact, { quoted: mek})
                  client.sendMessage(from, 'Jika Mau Save Chat Aja Gan Ntar Disave Back:)',text, { quoted: mek} )
+                 client.sendMessage(from, 'Jika Mau jika tidak muncul bisa hubungi nomor +62 896-7039-4574 ',text, { quoted: mek} )
                  break
                 case 'fitnah':
                  if (isBanned) return reply(mess.only.benned)    
@@ -747,7 +748,7 @@ async function starts() {
 				case 'animecry':
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
-					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/cry?apikey=${TobzApi}`, {method: 'get'})
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/cry&apikey=BotWeA`, {method: 'get'})
                    if (!isUser) return reply(mess.only.userB)
                    if (!isPublic) return reply(mess.only.publikG)
                    if (isLimit(sender)) return reply(limitend(pushname2))
@@ -1117,21 +1118,15 @@ async function starts() {
 					await limitAdd(sender)
 					break 
 				case 'nsfwloli':
-				    try {
-				    if (isBanned) return reply(mess.only.benned)    
-				    if (!isUser) return reply(mess.only.userB)
-				    if (!isPublic) return reply(mess.only.publikG)
-				    if (isLimit(sender)) return reply(limits.limitend(pushname2))
-						if (!isNsfw) return reply(' *FALSE* ')
-						res = await fetchJson(`https://api.vhtear.com/randomloli&apikey=${VthearApi}`, {method: 'get'})
-						buffer = await getBuffer(res.result.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					await limitAdd(sender)
-					break 
+                                        gatauda = body.slice(6)
+                                        if (!isRegister) return reply(mess.only.daftarB)
+                                        if (isLimit(sender)) return reply(ind.limitend(pusname))
+                                        reply(mess.wait)
+                                        anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomloli?apikey=BotWeA`, {method: 'get'})
+                                        buffer = await getBuffer(anu.result)
+                                        client.sendMessage(from, buffer, image, {quoted: mek})
+                                        await limitAdd(sender)
+                                        break
 			    case 'nsfwblowjob':
 				    try {
 				    if (isBanned) return reply(mess.only.benned)    
@@ -1552,7 +1547,7 @@ async function starts() {
 			   reply(mess.wait)
               	    if (args.length < 1) return reply('teksnya mana gan?')
                     teks = body.slice(9)
-                    anu = await fetchJson(`https://api.vhtear.com/nekosearch?query=${teks}&apikey=${VthearApi}`, {method: 'get'})
+                    anu = await fetchJson(`http://arugaz.my.id/api/anime/nekopoi/random`, {method: 'get'})
                     teks = `===============\n`
                     for (let neko of anu.result) {
                     teks += `Title: ${neko.title}\nDeskripsi: ${neko.detail}\n===============\n`
@@ -2115,7 +2110,7 @@ async function starts() {
 						teks += `╠➥ @${mem.jid.split('@')[0]} wa.me/${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions(`╔═══✪ Tag By *${pushname2}* ✪══`+ teks +'╚═══〘 FXC7 BOT 〙═══', members_id, true)
+					mentions(`╔═══✪ Tag By *${pushname2}* ✪══`+ teks +'╚═══〘 SYMPHONY BOT 〙═══', members_id, true)
 					break
 			    case 'mentionall':
 			    if (isBanned) return reply(mess.only.benned)    
@@ -2129,7 +2124,7 @@ async function starts() {
 						teks += `╠➥ @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions(`╔══〘  *${body.slice(12)}*  〙✪══`+teks+'╚═〘 FXC7 BOT 〙', members_id, true)
+					mentions(`╔══〘  *${body.slice(12)}*  〙✪══`+teks+'╚═〘 SYMPHONY BOT 〙', members_id, true)
 					break
 			    case 'kbbi':
 			    if (isBanned) return reply(mess.only.benned)    
@@ -2176,7 +2171,7 @@ async function starts() {
 					for (let _ of anu) {
 						client.deleteChat(_.jid)
 					}
-					reply(`\`\`\`Sukses delete all chat IRIENEBOT\`\`\``)
+					reply(`\`\`\`Sukses delete all chat SYMPHONYBOT\`\`\``)
 					break
                                 case 'bcgc':
 					client.updatePresence(from, Presence.composing) 
@@ -2209,7 +2204,7 @@ async function starts() {
 						reply('Suksess broadcast')
 					} else {
 						for (let _ of anu) {
-							sendMess(_.jid, `[ *IRIENEBOT BROADCAST* ]\n\n${body.slice(4)}`)
+							sendMess(_.jid, `[ *SYMPHONYBOT BROADCAST* ]\n\n${body.slice(4)}`)
 						}
 						reply('Suksess broadcast')
 					}
