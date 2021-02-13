@@ -9,7 +9,7 @@ ${instagram}
 ${yt}
 
 \`\`\`GROUP OFFICIAL\`\`\`
-https://chat.whatsapp.com/GHC5djoQJrcGBJFwYQuQoB
+
 
 
 \`\`\`HARAP BACA NOTE DIBAWAH SEBELUM\`\`\`
@@ -363,8 +363,8 @@ const donasi = (name) => {
 	return `       
 ╭─────「 *DONASI SEIKHLASNYA* 」
 ┴
-│√ *PULSA: 08311800241*
-│√ *OVO : 08311800241*
+│√ *PULSA: 089670394574*
+│√ *OVO : 089670394574*
 │
 │\`\`\`Pulsa\`\`\`
 │*15k Invite Bot Ke Grup selama 1 bulan*
@@ -441,7 +441,7 @@ exports.bahasa = bahasa
 
 // Limit
 const limitend = (pushname2) => {
-        return`*maaf ${pushname2} limit hari ini habis*\n*limit di reset setiap jam 12:00 WIB TENGAH MALAM*`
+        return`*maaf ${pushname2} limit hari ini habis*\n*limit di reset setiap jam 00:00 WIB TENGAH MALAM*`
 }
 
 const limitcount = (limitCounts) => {
