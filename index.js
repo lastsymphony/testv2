@@ -9,10 +9,10 @@ CFonts.say('Welcome In\nTermux Bot Wa', {
   align: 'center',
   gradient: ['red', 'magenta']
 })
-CFonts.say(`${package.name} By LASTSYMPHONY`, {
+CFonts.say(`${package.name} By ADITYA JATAYU`, {
   font: 'console',
   align: 'center',
-  gradient: ['red', 'magenta']
+  gradient: ['red', 'magenta', 'cyan']
 })
 function start(file) {
   let args = [path.join(file), ...process.argv.slice(2)]
