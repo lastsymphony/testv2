@@ -12,7 +12,7 @@ CFonts.say('Welcome In\nTermux Bot Wa', {
 CFonts.say(`${package.name} By ADITYA JATAYU`, {
   font: 'console',
   align: 'center',
-  gradient: ['red', 'magenta', 'cyan']
+  gradient: ['red', 'cyan']
 })
 function start(file) {
   let args = [path.join(file), ...process.argv.slice(2)]
