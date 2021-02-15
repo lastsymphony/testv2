@@ -547,111 +547,39 @@ async function starts() {
 				case 'stiker':
 				case 'sticker':
 				case 's':
-						if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						if (isLimit(sender)) return reply(limitend(pushname2))
-						reply(mess.wait)
-						const ran= getRandom('.webp')
-						await ffmpeg(`./${media}`)
-							.input(media)
-							.on('start', function (cmd) {
-								console.log(`Started : ${cmd}`)
-							})
-							.on('error', function (err) {
-								console.log(`Error : ${err}`)
-								fs.unlinkSync(media)
-								reply(mess.error.stick)
-							})
-							.on('end', function () {
-								console.log('Finish')
-								buff = fs.readFileSync(ran)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
-								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
-							})
-							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-							.toFormat('webp')
-							.save(ran)
-					} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
-						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						const ran= getRandom('.webp')
-						reply(mess.wait)
-						await ffmpeg(`./${media}`)
-							.inputFormat(media.split('.')[1])
-							.on('start', function (cmd) {
-								console.log(`Started : ${cmd}`)
-							})
-							.on('error', function (err) {
-								console.log(`Error : ${err}`)
-								fs.unlinkSync(media)
-								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-								reply(`\`\`\`Gagal, pada saat mengkonversi ${tipe} ke stiker\`\`\``)
-							})
-							.on('end', function () {
-								console.log('Finish')
-								buff = fs.readFileSync(ran)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
-								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
-							})
-							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-							.toFormat('webp')
-							.save(ran)
-					} else if ((isMedia || isQuotedImage) && args[0] == 'nobg') {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						ranw = getRandom('.webp')
-						ranp = getRandom('.png')
-						reply(mess.wait)
-						keyrmbg = 'bcAvZyjYAjKkp1cmK8ZgQvWH'
-						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
-							fs.unlinkSync(media)
-							let buffer = Buffer.from(res.base64img, 'base64')
-							fs.writeFileSync(ranp, buffer, (err) => {
-								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
-							})
-							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
-								fs.unlinkSync(ranp)
-								if (err) return reply(mess.error.stick)
-								buff = fs.readFileSync(ranw)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
-							})
-						})
-					} else {
-						reply(`Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim`)
-					}
-					await limitAdd(sender) 
-					break 
-					case 'trigger':
-					if (!isUser) return reply(mess.only.userB)
-					if (!isPublic) return reply(mess.only.publikG)
-					if (isBanned) return reply (mess.only.benned)
-					if (isLimit(sender)) return reply(limits.limitend(pushname2))
-					var imgbb = require('imgbb-uploader')
-					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
-					reply(mess.wait)
-					owgi = await  client.downloadAndSaveMediaMessage(ger)
-					anu = await imgbb("727e7e43f6cda1dfb85d888522fd4ce1", owgi)
-					teks = `${anu.display_url}`
-					ranp = getRandom('.gif')
-					rano = getRandom('.webp')
-					anu1 = `https://some-random-api.ml/canvas/triggered?avatar=${teks}`
-					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-					fs.unlinkSync(ranp)
-					if (err) return reply(mess.error.stick)
-					nobg = fs.readFileSync(rano)
-					client.sendMessage(from, nobg, sticker, {quoted: mek})
-					fs.unlinkSync(rano)
-					})
-					} else {
-					reply('Gunakan foto!')
-					}
-					await limitAdd(sender) 
-					break
+						if (text.includes('!Stiker')) {
+    conn.sendMessage(id, 'Kirim gambar dengan caption !stiker', MessageType.text, { quoted: m });
+  }
+  if (messageType == 'imageMessage') {
+    let caption = imageMessage.caption.toLocaleLowerCase()
+    const buffer = await conn.downloadMediaMessage(m) // to decrypt & use as a buffer
+    if (caption == '!stiker') {
+      const stiker = await conn.downloadAndSaveMediaMessage(m) // to decrypt & save to file
 
+      const
+        {
+          exec
+        } = require("child_process");
+      exec('cwebp -q 50 ' + stiker + ' -o temp/' + jam + '.webp', (error, stdout, stderr) => {
+        let stik = fs.readFileSync('temp/' + jam + '.webp')
+        conn.sendMessage(id, stik, MessageType.sticker, { quoted: m })
+      });
+    }
+  if (text.includes('!Sticker')) {
+    conn.sendMessage(id, 'Kirim gambar dengan caption !sticker', MessageType.text, { quoted: m });
+  }
+    if (caption == '!sticker') {
+      const stiker = await conn.downloadAndSaveMediaMessage(m) // to decrypt & save to file
+      const
+        {
+          exec
+        } = require("child_process");
+      exec('cwebp -q 50 ' + stiker + ' -o temp/' + jam + '.webp', (error, stdout, stderr) => {
+        let stik = fs.readFileSync('temp/' + jam + '.webp')
+        conn.sendMessage(id, stik, MessageType.sticker, { quoted: m })
+      });
+    }
+  }
 				case 'img2url':
 			if (!isUser) return reply(mess.only.userB)
 			if (!isPublic) return reply(mess.only.publikG)
@@ -1117,16 +1045,31 @@ async function starts() {
 					client.sendMessage(from, ssweb, image, {quoted: mek})
 					await limitAdd(sender)
 					break 
-				case 'nsfwloli':
-                                        gatauda = body.slice(6)
-                                        if (!isRegister) return reply(mess.only.daftarB)
-                                        if (isLimit(sender)) return reply(ind.limitend(pusname))
-                                        reply(mess.wait)
-                                        anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomloli?apikey=BotWeA`, {method: 'get'})
-                                        buffer = await getBuffer(anu.result)
-                                        client.sendMessage(from, buffer, image, {quoted: mek})
-                                        await limitAdd(sender)
-                                        break
+				case 'loli':
+                                         if (text.includes("!loli")) {
+    var items = ["anime loli"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek = n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek)
+          .then(
+            (response) => {
+              conn.sendMessage(id, '[⏱️] Wait a..', MessageType.text, { quoted: m })
+              var buf = Buffer.from(response, 'base64');
+              conn.sendMessage(id, buf, MessageType.image, { caption: `nih a...`, quoted: m })
+            }
+          )
+          .catch(
+            (error) => {
+              console.log(error);
+            }
+          )
+      });
+  }
 			    case 'nsfwblowjob':
 				    try {
 				    if (isBanned) return reply(mess.only.benned)    
