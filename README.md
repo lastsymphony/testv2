@@ -16,6 +16,7 @@ Follow The Steps Below!
 > pkg update -y
 > pkg upgrade -y
 > pkg install git -y
+> pkg install nodejs -y
 > git clone https://github.com/lastsymphony/testv2
 > cd termux-bot-wa
 > npm cache clear
