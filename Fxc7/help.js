@@ -2,16 +2,23 @@
 const help = (prefix, instagram, yt, name, pushname2, user, limitt, uptime, jam, tanggal) => { 
 	return `
 	
-\`\`\`Follow My Instagram\`\`\`
-${instagram}
-
-\`\`\`SUBSCRIBE😁\`\`\`
-${yt}
-
-\`\`\`GROUP OFFICIAL\`\`\`
 
 
 
+
+┣⊱ ADITYA JATAYU
+
+
+
+
+
+╭────────────────────────
+┴
+┣⊱ ADITYA JATAYU
+┣⊱ LAST SYMPHONY
+┣⊱ KARO NANGIS -_- 
+┬
+╰────────────────────────
 \`\`\`HARAP BACA NOTE DIBAWAH SEBELUM\`\`\`
 \`\`\`MENGGUNAKAN BOT\`\`\`
 
@@ -50,7 +57,7 @@ ${yt}
 ╰────────────────────────
 
 
-͏͏͏͏͏͏͏͏͏͏͏͏͏͏╭──────「 *MEDIA DOWNLOADER* 」
+╭──────「 *MEDIA DOWNLOADER* 」
 ┴
 │➻ *${prefix}tiktokstalk username*
 │➻ *${prefix}igstalk _farhan_xcode7*
@@ -148,7 +155,7 @@ ${yt}
 ╭───────「 *GROUP ONLY* 」
 ┴
 │➻ *${prefix}nsfw On/Off*
-│➻ *${prefix}nsfwloli*
+│➻ *${prefix}loli*
 │➻ *${prefix}nsfwblowjob*
 │➻ *${prefix}nsfwneko*
 │➻ *${prefix}nsfwtrap*
