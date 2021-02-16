@@ -1092,7 +1092,7 @@ ${desc}`)
 					client.sendMessage(from, ssweb, image, {quoted: mek})
 					await limitAdd(sender)
 					break 
-				case '!loli': 
+				case 'loli': 
              if (!isGroupMsg) return client.reply(from, 'Onichan Gomenasai harus di group desu!', id)
             const loli = fs.readFileSync('./lib/loli.json')
             const loliJson = JSON.parse(loli)
@@ -1100,9 +1100,9 @@ ${desc}`)
             const loliKey = loliJson[loliIndex]
             client.sendFileFromUrl(from, loliKey.image, 'loli.jpg', loliKey.teks)
             break
-            case '!loli2': 
+            case 'loli2': 
              if (!isGroupMsg) return client.reply(from, 'Onichan Gomenasai harus di group desu!', id)
-            const loli = fs.readFileSync('./lib/loli2.json')
+            const loli2 = fs.readFileSync('./lib/loli2.json')
             const loli2Json = JSON.parse(loli2)
             const loli2Index = Math.floor(Math.random() * loli2Json.length)
             const loli2Key = loli2Json[loli2Index]
